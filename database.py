@@ -1,5 +1,5 @@
 import re
-
+import random
 from pymongo import database
 import config
 
@@ -44,7 +44,7 @@ def teamNameCheck(event,teamName):
 			# 'passcode': 0000
 			}
 		event.insert_one(datatoEnter)
-		event.update_one({"_id": teamName}, {"$set": {'passcode': $floor: { $multiply: [ { $rand: {} }, 1000 ] }}})
+		event.update_one({"_id": teamName}, {"$set": {'passcode': random.randint(1000,9999)}})
 		passcode = event['passcode']
 		x = 0
 		dataEvent = event.find_one({'_id':teamName})
