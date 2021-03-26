@@ -6,10 +6,7 @@ import config
 clientObj = config.Oauth()
 client = clientObj.databaseTOKEN()
 
-"""
-Bot connections database creation.
-@params - Discord parameters from client.
-"""
+
 def addServerInfo(serverID, serverName, textChannels, Admin, roles):
 
 
@@ -39,9 +36,8 @@ def createEvent(serverID, eventName):
 	
 def teamNameCheck(event,teamName):
 	if event.find_one({"_id":teamName}) is None:
-    		datatoEnter = {
+		datatoEnter = {
 			"_id":teamName
-			# 'passcode': 0000
 			}
 		event.insert_one(datatoEnter)
 		event.update_one({"_id": teamName}, {"$set": {'passcode': random.randint(1000,9999)}})
@@ -51,29 +47,31 @@ def teamNameCheck(event,teamName):
 		return x,passcode,dataEvent
 	else:
 		x = 1
-		return event['teamName']
+		dataEvent = event.find_one({'_id':teamName})
+		return x,None,dataEvent
 
-def emailCheck(email):
-	checkedEmail = []
-	for emails in email:
+# def emailCheck(email):
+# 	checkedEmail = []
+# 	for emails in email:
 		
-		if re.match('(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', emails):
-				checkedEmail.append(emails)
-		else:
-				return None
-	return checkedEmail
+# 		if re.match('(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', emails):
+# 				checkedEmail.append(emails)
+# 		else:
+# 				return None
+# 	return checkedEmail
 
 def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode = None):
+	passcode
 	event,dataBase = createEvent(serverID,eventName)
 	availableEvents = dataBase.list_collection_names()
 	if eventName not in availableEvents :
 		tag = 'no such event found'
-		return tag
-	event = createEvent(serverID , eventName)
-	if emailCheck(emailID) is None:
-		tag = 'some error in email'
-		return tag
-	x,passcode,dataEvent = teamNameCheck(event,teamName)
+		return tag ,None
+
+	# if emailCheck(emailID) is None:
+	# 	tag = 'some error in email'
+	# 	return tag , None
+	x,passcode1,dataEvent = teamNameCheck(event,teamName)
 	if x == 0:
 		event.update_one({"_id": teamName}, {"$set": {
 			"discordID":discordID,
@@ -81,7 +79,7 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 			"age":age,
 			"email":emailID	
 		}})
-		return teamName,passcode
+		return teamName,passcode1
 
 	else:
 		if passcode == None:
@@ -89,7 +87,19 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 			return tag
 		
 		if dataEvent['_id'] == teamName and dataEvent['passcode'] == passcode:
-			event.update({'_id': teamName}, {'$push': {'discordID':discordID,'name':name,'age':age,'email':emailID }})
+			event.update_many({'_id': teamName}, {'$push': {'discordID':discordID,'name':name,'age':age,'email':emailID }})
 		else:
 			tag = 'check teamname or password'
 			return tag
+
+
+serverID = "669168139061166120"
+eventName = 'hcaks'
+teamName = 'lazix'
+discordID = '669518518777282561'
+name = 'Jay'
+age = '25'
+emailID = 'JayP@gmail.com'
+passcode = 6192
+
+print(mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode))

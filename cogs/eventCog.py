@@ -1,4 +1,4 @@
-from dicord.ext import commands
+from discord.ext import commands
 import discord
 import database as db
 
