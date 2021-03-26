@@ -1,16 +1,17 @@
 import re
+
+from pymongo import database
 import config
-import pymongo
+
 clientObj = config.Oauth()
 client = clientObj.databaseTOKEN()
 
-
+"""
+Bot connections database creation.
+@params - Discord parameters from client.
+"""
 def addServerInfo(serverID, serverName, textChannels, Admin, roles):
-    """
-  Bot connections database creation.
-  @params - Discord parameters from client.
-  
-  """
+
 
     dataBase = client[serverID]
     serverInfo = dataBase['serverInfo']
@@ -23,26 +24,27 @@ def addServerInfo(serverID, serverName, textChannels, Admin, roles):
     }
     serverInfo.insert_one(serverData)
 
+
 def removeServerInfo(serverID):
-  client.drop_database(serverID)
+	client.drop_database(serverID)
+
 
 def createEvent(serverID, eventName):
-  dataBase = client[serverID]
-  event = dataBase[eventName]
-  return event
-
-def passcodeGen():
 	dataBase = client[serverID]
-  event = dataBase['passcodes']
+	event = dataBase[eventName]
+	return event,dataBase
+
+
+
 	
 def teamNameCheck(event,teamName):
-		if event.find_one({"_id":teamName}) is None:
-    datatoEnter = {
+	if event.find_one({"_id":teamName}) is None:
+    		datatoEnter = {
 			"_id":teamName
 			# 'passcode': 0000
 			}
 		event.insert_one(datatoEnter)
-		event.update_one({"_id": teamName}, {"$set": {'passcode': $floor:{ $multiply: [ { $rand: {} }, 1000 ] }}})
+		event.update_one({"_id": teamName}, {"$set": {'passcode': $floor: { $multiply: [ { $rand: {} }, 1000 ] }}})
 		passcode = event['passcode']
 		x = 0
 		dataEvent = event.find_one({'_id':teamName})
@@ -52,19 +54,19 @@ def teamNameCheck(event,teamName):
 		return event['teamName']
 
 def emailCheck(email):
-  checkedEmail = []
-
-  for emails in email:
-      if re.match('(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', emails):
-          checkedEmail.append(emails)
-      else:
-          return None
-  return checkedEmail
+	checkedEmail = []
+	for emails in email:
+		
+		if re.match('(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', emails):
+				checkedEmail.append(emails)
+		else:
+				return None
+	return checkedEmail
 
 def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode = None):
-
+	event,dataBase = createEvent(serverID,eventName)
 	availableEvents = dataBase.list_collection_names()
-	if eventName is not in availableEvents:
+	if eventName not in availableEvents :
 		tag = 'no such event found'
 		return tag
 	event = createEvent(serverID , eventName)
@@ -75,7 +77,7 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 	if x == 0:
 		event.update_one({"_id": teamName}, {"$set": {
 			"discordID":discordID,
-			"name":name1,
+			"name":name,
 			"age":age,
 			"email":emailID	
 		}})
@@ -85,8 +87,9 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 		if passcode == None:
 			tag = 'enter passcode or team is present'
 			return tag
+		
 		if dataEvent['_id'] == teamName and dataEvent['passcode'] == passcode:
-			event.update({'_id': teamName}, {'$push': {'discordID':discordID,'name':name,'age':age,'email':emailID }}
+			event.update({'_id': teamName}, {'$push': {'discordID':discordID,'name':name,'age':age,'email':emailID }})
 		else:
 			tag = 'check teamname or password'
 			return tag
