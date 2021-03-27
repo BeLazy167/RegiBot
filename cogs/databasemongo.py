@@ -1,6 +1,6 @@
 import re
 import random
-# import config
+from cogs import configbot
 import pymongo
 import string
 
@@ -26,7 +26,7 @@ clientObj = Oauth()
 client = clientObj.databaseTOKEN()
 
 def random_string_generator():
-	#to genrate random team name for one time  
+	#to generate random team name for one time  
 	allowed_chars = string.ascii_letters
 	return ''.join(random.choice(allowed_chars) for _ in range(10))
 
