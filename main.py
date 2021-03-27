@@ -1,17 +1,39 @@
-# import database as db
-import config
+from cogs import database as db
+from cogs import config
 import discord
 from discord.utils import get
+from cogs import eventCog
 import logging as logger
 from discord.ext import commands
+
+cogs = [eventCog]
+
+
 
 #import all the config data
 dataConfig = config.Oauth()
 TOKEN, ownerID = dataConfig.discordTOKEN()
-intents = discord.Intents().all()
-client = commands.Bot(command_prefix="reg ",
+# intents = discord.Intents().all()
+client = commands.Bot(command_prefix='!',
                       help_command=None,
-                      owner_ids=ownerID,intents=intents)
+                      owner_ids=ownerID)
+
+
+
+for i in range(len(cogs)):
+    cogs[i].setup(client)
+
+
+@client.command(name='hello')
+async def hello(message):
+  guild = message.guild
+  print(guild)
+  await message.channel.send("HI")
+
+@client.command()
+async def hi(ctx):
+  print(ctx)
+  await ctx.channel.send("Hi")
 
 @client.event
 async def on_guild_channel_delete(channel):
@@ -37,14 +59,6 @@ async def on_disconnect():
 async def on_memeber_join(member):
     pass
 
-@client.command(name='delete')
-@commands.has_permissions(manage_roles=True)
-async def delete(message):
-  textChannel = message.channel.name
-  if textChannel=="events-schedule":
-    textChannel.delete()
-
-
 @client.event
 async def on_guild_join(guild):
   # checking if admin role is exist if not exist it will create it
@@ -56,12 +70,13 @@ async def on_guild_join(guild):
   #   print(adminRole,"inside")
 
   # user with role admin and server owner can see the text_channel
-  overwrites = {
-        guild.default_role: discord.PermissionOverwrite(read_messages=False),
-        guild.owner: discord.PermissionOverwrite(read_messages=True),
-        # adminRole: discord.PermissionOverwrite(read_messages=True)
-    }
-  channel = await guild.create_text_channel('Events-schedule',overwrites=overwrites)
+  # botRole = get(guild.roles,name="Regbot")
+  # overwrites = {
+  #       guild.default_role: discord.PermissionOverwrite(read_messages=False),
+  #       guild.owner: discord.PermissionOverwrite(read_messages=True)
+  #   }
+  channel = await guild.create_text_channel('Events-schedule')
+  await channel.send('Event-schedule channel is created')
 
   # Necessary Arguments
   serverID = str(guild.id)
@@ -79,14 +94,14 @@ async def on_guild_join(guild):
       textChannelsList.append(channel.name)
   
   # Database creation
-  # db.addServerInfo(serverID, serverName, textChannelsList, rolesList, events)
+  db.addServerInfo(serverID, serverName, textChannelsList, rolesList, events)
 
   #category = await guild.create_category
 
 @client.event
 async def on_guild_remove(guild):
   serverId = str(guild.id)
-  # db.removeServerInfo(serverId)
+  db.removeServerInfo(serverId)
   # Remove the created channels
   logger.info("Removed from database")
 
@@ -101,8 +116,9 @@ async def on_message(message):
   if message.author == client.user:  # if the message is send by bot it will return None
       return None
 
-  if message.content.startswith("create"):
-      await message.channel.send("Hello")
+  if message.channel.name=='events-schedule':
+    if message.content.startswith("create"):
+        await message.channel.send("Hello")
 
 
 client.run(TOKEN)

@@ -5,7 +5,7 @@ import praw
 class Oauth():
 
     def __init__(self):
-        self.TOKEN = 'ODI0MjgyMzY0OTkzMzM5NDAz.YFtGxg.upzdpPGXug6m-UPKLo1x5q37O7g'
+        self.TOKEN = 'ODI1MjYyMzU2NDU1MjI3NDAy.YF7Xdg.hCdAd8g694JAMqkuPjJpaXi7q1k'
         self.OWNER_IDS = ['252353540327079936', '669518518777282561','440858271000035328']
         
         #database token
