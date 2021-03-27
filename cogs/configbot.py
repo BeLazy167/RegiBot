@@ -1,5 +1,4 @@
 import pymongo
-import praw
 
 
 class Oauth():
