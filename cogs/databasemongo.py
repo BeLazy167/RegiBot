@@ -133,7 +133,7 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 		if dataEvent['_id'] == teamName and dataEvent['passcode'] == passcode:
 			event.update_many({'_id': teamName}, {'$push': {'discordID':discordID,'name':name,'age':age,'email':emailID }})
 			tag = 'registration done'
-			return tag,None
+			return tag,passcode
 		else:
 			tag = 'check teamname or passcode'
 			return tag, None
