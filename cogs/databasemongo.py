@@ -4,8 +4,6 @@ from cogs import configbot as config
 import pymongo
 import string
 
-
-
 clientObj = config.Oauth()
 client = clientObj.databaseTOKEN()
 
@@ -31,7 +29,12 @@ def addServerInfo(serverID, serverName, textChannels, Admin, roles):
 def removeServerInfo(serverID):
 	#to delete all server info when the bot is kicked from the server
 	client.drop_database(serverID)
-	
+
+def deleteEvent(serverID,eventName):
+	dataBase = client[serverID]
+	event = dataBase[eventName]
+	event.drop()
+
 def eventCheck(serverID,eventName):
 	#to check that the event is present for user to register refer maintemplate function
 	dataBase = client[serverID]
@@ -54,6 +57,7 @@ def createEventAdmin(serverID, eventName):
 			"_id":str(random_string_generator()),
 			"passcode":0000,
 			"discordID":"discordID",
+			"discordUsername":'discordUsername',
 			"name":"name",
 			"age":"age",
 			"email":"emailID"
@@ -64,7 +68,7 @@ def createEventAdmin(serverID, eventName):
 	elif eventName in availableEvents:
 		#if event is already there then then it will return the tag 
 		event = dataBase[eventName]
-		tag = 'same event is already present'
+		tag = 'Same event is already present.'
 		return tag,dataBase
 	
 
@@ -91,7 +95,7 @@ def teamNameCheck(event,teamName):
 
 def discordIdCheck(serverID,eventName,discordID):
 	event,dataBase = eventCheck(serverID,eventName)
-	cursor = event.find_one({"discordID": {"$all": discordID}})
+	cursor = event.find_one({"discordID": {"$all": [discordID]}})
 	if cursor is not None:
 		teamName = cursor['_id']
 		present = 1
@@ -99,10 +103,10 @@ def discordIdCheck(serverID,eventName,discordID):
 	else:
 		return 0 ,None
 
-def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode = None):
+def mainTemplate(serverID,eventName,teamName,discordID,discordUsername,name,age,emailID,passcode = None):
 	event,dataBase = eventCheck(serverID,eventName)
 	if event == 1 :
-		tag = 'no such event found'
+		tag = 'No such event found.'
 		return tag ,None
 
 	x,passcode1,dataEvent = teamNameCheck(event,teamName)
@@ -111,6 +115,7 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 		#after creating team for 1st time the user who created the team will be registerd
 		event.update_one({"_id": teamName}, {"$push": {
 			"discordID":discordID,
+			"discordUsername":discordUsername,
 			"name":name,
 			"age":age,
 			"email":emailID	
@@ -126,26 +131,18 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 		if dataEvent['_id'] == teamName and dataEvent['passcode'] == passcode:
 			present,checkedTeamName = discordIdCheck(serverID,eventName,discordID)
 			if present == 0:
-				event.update_many({'_id': teamName}, {'$push': {'discordID':discordID,'name':name,'age':age,'email':emailID }})
-				tag = 'registration done'
+				event.update_many({'_id': teamName}, {'$push': {'discordID':discordID,"discordUsername":discordUsername,'name':name,'age':age,'email':emailID }})
+				tag = 'Registration done ✅'
 				return tag,passcode
 			else :
-				tag = 'you have already registerd in team in this event'
+				tag = 'You have already registerd in team in this event'
 				return tag , checkedTeamName
 		else:
-			tag = 'check teamname or passcode'
+			tag = 'Check team name or passcode.'
 			return tag, None
 
 
-# serverID = "669168139061166120"
-# eventName = 'hcaks2021'
-# teamName = 'lazix2'
-# discordID = '660518518777282561'
-# name = 'JDDdday'
-# age = '25'
-# emailID = 'JadaDADAdayP@gmail.com'
-# passcode = 7235
-# print(mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode))
+
 
 
 

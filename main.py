@@ -24,17 +24,6 @@ for i in range(len(cogs)):
 
 
 @client.event
-async def on_guild_channel_delete(channel):
-  pass
-
-
-@client.event
-async def on_guild_channel_create(channel):
-  pass
-
-
-
-@client.event
 async def on_disconnect():
   logger.info("Bot disconnected.")
 
@@ -47,7 +36,17 @@ async def on_guild_join(guild):
         guild.owner: discord.PermissionOverwrite(read_messages=True)
     }
   channel = await guild.create_text_channel('Events-schedule',overwrites=overwrites)
-  await channel.send('Description: Commands')
+  await channel.send(""" Welcome to Regibot ®
+  1. Only admin or server owners can access and use this channel to plan the events.
+  2. You can create event using command:
+      `reg create event_name` 
+      example: `reg create hackathons`
+  3. You can delete event using command:
+      `reg delete event_name`
+      example: `reg delete hackathons`
+  4. You can export the registered users using this command:
+      `reg data event_name`
+  """)
 
   # Necessary Arguments
   serverID = str(guild.id)
