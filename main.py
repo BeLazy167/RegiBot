@@ -8,8 +8,6 @@ from discord.ext import commands
 
 cogs = [eventCog]
 
-
-
 #import all the config data
 dataConfig = config.Oauth()
 TOKEN, ownerID = dataConfig.discordTOKEN()

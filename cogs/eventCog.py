@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-# import database as db
+#import database as db
 
 
 class eventCreate(commands.Cog):
