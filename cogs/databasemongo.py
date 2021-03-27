@@ -1,6 +1,6 @@
 import re
 import random
-from cogs import configbot
+#import config
 import pymongo
 import string
 
@@ -26,7 +26,7 @@ clientObj = Oauth()
 client = clientObj.databaseTOKEN()
 
 def random_string_generator():
-	#to generate random team name for one time  
+	#to genrate random team name for one time  
 	allowed_chars = string.ascii_letters
 	return ''.join(random.choice(allowed_chars) for _ in range(10))
 
@@ -105,6 +105,15 @@ def teamNameCheck(event,teamName):
 		dataEvent = event.find_one({'_id':teamName})
 		return x,None,dataEvent
 
+def discordIdCheck(serverID,eventName,discordID):
+	event,dataBase = eventCheck(serverID,eventName)
+	cursor = event.find_one({"discordID": {"$all": discordID}})
+	if cursor is not None:
+		teamName = cursor['_id']
+		present = 1
+		return present , teamName
+	else:
+		return 0 ,None
 
 def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode = None):
 	event,dataBase = eventCheck(serverID,eventName)
@@ -131,9 +140,14 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 			return tag,None
 		
 		if dataEvent['_id'] == teamName and dataEvent['passcode'] == passcode:
-			event.update_many({'_id': teamName}, {'$push': {'discordID':discordID,'name':name,'age':age,'email':emailID }})
-			tag = 'registration done'
-			return tag,None
+			present,checkedTeamName = discordIdCheck(serverID,eventName,discordID)
+			if present == 0:
+				event.update_many({'_id': teamName}, {'$push': {'discordID':discordID,'name':name,'age':age,'email':emailID }})
+				tag = 'registration done'
+				return tag,passcode
+			else :
+				tag = 'you have already registerd in team in this event'
+				return tag , checkedTeamName
 		else:
 			tag = 'check teamname or passcode'
 			return tag, None
@@ -160,3 +174,5 @@ def mainTemplate(serverID,eventName,teamName,discordID,name,age,emailID,passcode
 # 		else:
 # 				return None
 # 	return checkedEmail
+
+
