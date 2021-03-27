@@ -45,7 +45,7 @@ class eventCreate(commands.Cog):
     serverID = message.guild.id
     teamName = eventData[1]
     discordID= str(args[1])
-    print(discordID.memaber)
+    print(discordID.member)
     logger.info(discordID)
     name = eventData[3]
     age = eventData[4]
