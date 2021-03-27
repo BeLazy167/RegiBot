@@ -89,7 +89,8 @@ def teamNameCheck(event,teamName):
 	#this function checks that if the team name is already there or not ,if not it creates the team and returns the passcode
 	if event.find_one({"_id":teamName}) is None:
 		datatoEnter = {
-				"_id":teamName
+				"_id":teamName,
+				'defId':"1"
 			}
 		event.insert_one(datatoEnter)
 		event.update_one({"_id": teamName}, {"$set": {'passcode': random.randint(1000,9999)}})
