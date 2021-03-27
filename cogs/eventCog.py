@@ -14,17 +14,15 @@ class eventCreate(commands.Cog):
     print("eventCreate cog is ready")
 
 
-
   @commands.command(name='delete')
   async def delete(self,message,event= None):
-    logger.info(message.guild.categories)
-    for category in message.guild.categories:
-      if category.name == f'{event}':
-        await category.channels.delete()
-        
-  
-
-
+    channel = ['events-schedule']
+    if message.channel.name in channel:
+      for category in message.guild.categories:
+        if category.name == f'{event}':
+          for channel in category.channels:
+            await channel.delete()
+          await category.delete()
 
   @commands.command(name="create",aliases=['Event','evenT','EVENT'])
   async def create(self,message,event="None"):
