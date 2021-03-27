@@ -1,14 +1,32 @@
 import re
 import random
-from pymongo import database
-import config
+from cogs import configbot
+import pymongo
 import string
 
-clientObj = config.Oauth()
+class Oauth():
+
+    def __init__(self):
+        self.TOKEN = 'ODI1MjYyMzU2NDU1MjI3NDAy.YF7Xdg.hCdAd8g694JAMqkuPjJpaXi7q1k'
+        self.OWNER_IDS = ['252353540327079936', '669518518777282561','440858271000035328']
+        
+        #database token
+        self.db_link = "mongodb+srv://BeLazy:BeLazy@cluster0.csr3d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+        self.client = pymongo.MongoClient(self.db_link)
+        
+
+
+    def discordTOKEN(self):
+        return self.TOKEN , self.OWNER_IDS
+
+    def databaseTOKEN(self):
+        return self.client
+
+clientObj = Oauth()
 client = clientObj.databaseTOKEN()
 
 def random_string_generator():
-	#to genrate random team name for one time  
+	#to generate random team name for one time  
 	allowed_chars = string.ascii_letters
 	return ''.join(random.choice(allowed_chars) for _ in range(10))
 
@@ -71,7 +89,8 @@ def teamNameCheck(event,teamName):
 	#this function checks that if the team name is already there or not ,if not it creates the team and returns the passcode
 	if event.find_one({"_id":teamName}) is None:
 		datatoEnter = {
-				"_id":teamName
+				"_id":teamName,
+				'defId':"1"
 			}
 		event.insert_one(datatoEnter)
 		event.update_one({"_id": teamName}, {"$set": {'passcode': random.randint(1000,9999)}})
