@@ -1,10 +1,36 @@
 import re
 import random
+<<<<<<< HEAD
 from pymongo import database
 import config
 import string
 
 clientObj = config.Oauth()
+=======
+# import config
+import pymongo
+import string
+
+class Oauth():
+
+    def __init__(self):
+        self.TOKEN = 'ODI1MjYyMzU2NDU1MjI3NDAy.YF7Xdg.hCdAd8g694JAMqkuPjJpaXi7q1k'
+        self.OWNER_IDS = ['252353540327079936', '669518518777282561','440858271000035328']
+        
+        #database token
+        self.db_link = "mongodb+srv://BeLazy:BeLazy@cluster0.csr3d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+        self.client = pymongo.MongoClient(self.db_link)
+        
+
+
+    def discordTOKEN(self):
+        return self.TOKEN , self.OWNER_IDS
+
+    def databaseTOKEN(self):
+        return self.client
+
+clientObj = Oauth()
+>>>>>>> 138366b71f36e8a87f43a7d7415ed0a402ea0ac9
 client = clientObj.databaseTOKEN()
 
 def random_string_generator():
@@ -71,7 +97,12 @@ def teamNameCheck(event,teamName):
 	#this function checks that if the team name is already there or not ,if not it creates the team and returns the passcode
 	if event.find_one({"_id":teamName}) is None:
 		datatoEnter = {
+<<<<<<< HEAD
 				"_id":teamName
+=======
+				"_id":teamName,
+				'defId':"1"
+>>>>>>> 138366b71f36e8a87f43a7d7415ed0a402ea0ac9
 			}
 		event.insert_one(datatoEnter)
 		event.update_one({"_id": teamName}, {"$set": {'passcode': random.randint(1000,9999)}})
