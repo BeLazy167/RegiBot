@@ -48,7 +48,7 @@ Read [setup.md](https://github.com/BeLazy167/RegiBot/blob/final-push/setup.md) f
 
 ### Libraries Used
 - Discord.py
->**[Discord.py]((https://discordpy.readthedocs.io/en/latest/api.html#))** is a modern, easy to use, **feature-rich**, and async ready API wrapper for Discord.
+>**[Discord.py](https://discordpy.readthedocs.io/en/latest/api.html#)** is a modern, easy to use, **feature-rich**, and async ready API wrapper for Discord.
 > 
 >Features:
   >- **Modern Pythonic API** using async/await syntax
@@ -86,7 +86,7 @@ people who already contributed to RegiBot
 
 ---
 
-## If you liked our work considering giving it a 🌟.
+<h2 align="center">If you liked our work considering giving it a 🌟</h2>
 <p align="center">
  <img src="https://media.giphy.com/media/ip6n2oVNZBHiM/giphy.gif"/>
 </p>
