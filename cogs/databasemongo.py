@@ -97,20 +97,24 @@ def discordIdCheck(serverID,eventName,discordID):
 	event,dataBase = eventCheck(serverID,eventName)
 	cursor = event.find_one({"discordID": {"$all": [discordID]}})
 	if cursor is not None:
-		teamName = cursor['_id']
+		teamName,passcode = cursor['_id'] ,cursor['passcode']
 		present = 1
-		return present , teamName
+		return present , teamName ,passcode
 	else:
-		return 0 ,None
+		return 0 ,None ,None
 
 def mainTemplate(serverID,eventName,teamName,discordID,discordUsername,name,age,emailID,passcode = None):
 	event,dataBase = eventCheck(serverID,eventName)
 	if event == 1 :
 		tag = 'No such event found.'
-		return tag ,None
-
-	x,passcode1,dataEvent = teamNameCheck(event,teamName)
+		return tag ,None,None
 	
+	present,checkedTeamName,passcode2 = discordIdCheck(serverID,eventName,discordID)
+	if present != 0:
+		tag = 'You are already registered in a team for this event.'
+		return tag,checkedTeamName,passcode2
+	
+	x,passcode1,dataEvent = teamNameCheck(event,teamName)
 	if x == 0:
 		#after creating team for 1st time the user who created the team will be registerd
 		event.update_one({"_id": teamName}, {"$push": {
@@ -120,26 +124,27 @@ def mainTemplate(serverID,eventName,teamName,discordID,discordUsername,name,age,
 			"age":age,
 			"email":emailID	
 		}})
-		return teamName,passcode1
+		tag = teamName
+		return tag,teamName,passcode1
 
 	else:
 		#if the other memeber of the team enters teamname && passcode they will be registerd in the team 
 		if passcode == None:
-			tag = 'enter passcode'
-			return tag,None
+			tag = 'Enter passcode:'
+			return tag,None,None
 		
 		if dataEvent['_id'] == teamName and dataEvent['passcode'] == passcode:
-			present,checkedTeamName = discordIdCheck(serverID,eventName,discordID)
+			present,checkedTeamName,passcode2 = discordIdCheck(serverID,eventName,discordID)
 			if present == 0:
 				event.update_many({'_id': teamName}, {'$push': {'discordID':discordID,"discordUsername":discordUsername,'name':name,'age':age,'email':emailID }})
 				tag = 'Registration done ✅'
-				return tag,passcode
+				return tag, teamName, passcode
 			else :
-				tag = 'You have already registerd in team in this event'
-				return tag , checkedTeamName
+				tag = 'You are already registered in a team for this event.'
+				return tag , checkedTeamName ,passcode2
 		else:
 			tag = 'Check team name or passcode.'
-			return tag, None
+			return tag, None ,None
 
 
 

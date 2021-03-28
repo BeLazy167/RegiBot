@@ -39,13 +39,30 @@ async def on_guild_join(guild):
   await channel.send(""" Welcome to Regibot ®
   1. Only admin or server owners can access and use this channel to plan the events.
   2. You can create event using command:
+
       `reg create event_name` 
       example: `reg create hackathons`
+
   3. You can delete event using command:
+
       `reg delete event_name`
       example: `reg delete hackathons`
-  4. You can export the registered users using this command:
+
+  4. You can export the registered users in a csv file using:
+
       `reg data event_name`
+      example: `reg data hackathons`
+      
+  5. You can get the total count of members in the event using:
+  
+      `reg givecount event_name`
+      example: `reg givecount hackathons`
+  
+  6. You can clear no. of messages in event schedule chat using:
+
+      `reg clear no_of_messages`
+      example: `reg clear 5`
+
   """)
 
   # Necessary Arguments

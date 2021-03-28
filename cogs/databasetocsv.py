@@ -10,10 +10,11 @@ def main(serverID,eventName):
     cursor = collection.find({'defId':"1"})
     return cursor
     
-def mongotoCsv(serverID,eventName):
+def mongoToCsv(serverID,eventName):
     cursor = main(serverID,eventName)
     df = pd.DataFrame(list(cursor))
-    return df
+    df.to_csv(f'{eventName}.csv')
+    return f'{eventName}.csv'
 
 def totalParticipant(serverID,eventName):
     cursor = main(serverID,eventName)
