@@ -1,6 +1,6 @@
-# TRAGIC SIMP
+# RegiBot
 
-TragicSimp is a discord bot that can send memes, facts, jokes, quotes and track user stats
+A discord registration bot that can be used to register the participants in a specific tournament or competition reducing the work load for the admin.
 
 ## Installation
 
