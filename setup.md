@@ -7,7 +7,7 @@ A discord registration bot that can be used to register the participants in a sp
 Download this project 
 
 ```bash
-git clone https://github.com/JayP09/discfactbot.git
+git clone https://github.com/BeLazy167/RegiBot.git
 ```
 
 ## Installing Dependencies
