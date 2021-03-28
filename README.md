@@ -81,7 +81,7 @@ Contributions are what make the open source community such an amazing place to b
 ## Contributors
 people who already contributed to RegiBot
 <a href="https://github.com/BeLazy167/RegiBot/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=BeLazy167/RegiBot" />
+  <img src="https://github.com/BeLazy167/RegiBot/blob/final-push/assets/606082f9859c8-removebg-preview%20(1).png" />
 </a>
 
 ---
