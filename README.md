@@ -22,6 +22,7 @@
 ### Libraries Used
 - [Discord.py](https://discordpy.readthedocs.io/en/latest/api.html#)
 >**Discord.py** is a modern, easy to use, **feature-rich**, and async ready API wrapper for Discord.
+<<<<<<< HEAD
 >Features:
   >- **Modern Pythonic API** using async/await syntax
   >- Sane rate limit handling that prevents 429s
@@ -29,6 +30,16 @@
   - Command extension to aid with bot creation
   - Easy to use with an object oriented design
   - Optimised for both speed and memory
+=======
+>
+> Features:
+  >- **Modern Pythonic API** using async/await syntax
+  >- Sane rate limit handling that prevents 429s
+  >- Implements the entire **Discord API**
+  >- Command extension to aid with bot creation
+  >- Easy to use with an object oriented design
+  >- Optimised for both speed and memory
+>>>>>>> origin/work
 
 - [pymongo](https://docs.mongodb.com/drivers/pymongo/)
 > **PyMongo** is a Python distribution containing tools for working with **MongoDB**, and is the recommended way to work with MongoDB from Python. This documentation attempts to explain everything you need to know to use **PyMongo**.
