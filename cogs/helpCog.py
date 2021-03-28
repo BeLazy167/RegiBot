@@ -17,26 +17,26 @@ class Help(commands.Cog):
     if message.channel.name in channels:
       if help_type is None:
         embed = discord.Embed(title="Bot Commands List", description="we have some really amazing commands")
-        embed.add_field(name='<:facts:814823810263547924> Create', value=f"`{prefix}help create`", inline=True)
-        embed.add_field(name='<:joke:814826126668726292> Delete', value=f"`{prefix}help delete`", inline=True)
-        embed.add_field(name='<:meme:814824521324036096> Data', value=f"`{prefix}help data`", inline=True)
-        embed.add_field(name='<:fire:814825327833382942> Participants', value=f"`{prefix}help givecount`",inline=True)
-        embed.add_field(name='<:fire:814825327833382942> clear', value=f"`{prefix}help clear`",inline=True)
+        embed.add_field(name=':regional_indicator_c: Create', value=f"`{prefix}help create`", inline=True)
+        embed.add_field(name=':x: Delete', value=f"`{prefix}help delete`", inline=True)
+        embed.add_field(name=':clipboard: Data', value=f"`{prefix}help data`", inline=True)
+        embed.add_field(name=':man_technologist: Participants', value=f"`{prefix}help givecount`",inline=True)
+        embed.add_field(name=':no_entry_sign: clear', value=f"`{prefix}help clear`",inline=True)
         await message.channel.send(embed=embed)
       elif help_type.upper()=='CREATE':
-        embed = discord.Embed(title="Create",description=f'You can create event using command:\n `{prefix}create event_name` \n example: reg create hackathons',colour=0x00ff00)
+        embed = discord.Embed(title=":regional_indicator_c: Create",description=f'You can create event using command:\n `{prefix}create event_name` \n example: `reg create hackathons`',colour=0x00ff00)
         await message.channel.send(embed=embed)
       elif help_type.upper()=='DELETE':
-        embed = discord.Embed(title="Delete",description=f'You can delete event using command:\n `{prefix}delete event_name` \n example: reg delete hackathons')
+        embed = discord.Embed(title=":x: Delete",description=f'You can delete event using command:\n `{prefix}delete event_name` \n example: `reg delete hackathons`',colour=0x00ff00)
         await message.channel.send(embed=embed)
       elif help_type.upper()=='DATA':
-        embed = discord.Embed(title="Data",description=f'You can export the registered users in a csv file using: \n `{prefix}data event_name` \n example: reg data hackathons')
+        embed = discord.Embed(title=":clipboard: Data",description=f'You can export the registered users in a csv file using: \n `{prefix}data event_name` \n example: `reg data hackathons`',colour=0x00ff00)
         await message.channel.send(embed=embed)
       elif help_type.upper()=='GIVECOUNT':
-        embed = discord.Embed(title="Count",description=f'You can get the total count of members in the event using: \n `{prefix}givecount event_name` \n example: reg givecount hackathons')
+        embed = discord.Embed(title=":man_technologist: Participants",description=f'You can get the total count of members in the event using: \n `{prefix}givecount event_name` \n example: `reg givecount hackathons`',colour=0x00ff00)
         await message.channel.send(embed=embed)
       elif help_type.upper()=='CLEAR':
-        embed = discord.Embed(title="Count",description=f' You can clear all messages in chat using: \n `{prefix}data event_name` \n example: reg data hackathons')
+        embed = discord.Embed(title=":no_entry_sign: clear",description=f' You can clear all messages in chat using: \n `{prefix}data event_name` \n example: `reg data hackathons`',colour=0x00ff00)
         await message.channel.send(embed=embed)
 
 def setup(client):
