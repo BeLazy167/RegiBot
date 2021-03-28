@@ -1,7 +1,32 @@
+<img src="https://github.com/JayP09/TragicSimpBot/blob/main/assets/logo.png" align="center" />
+<br/>
+
+---
+
+<p align="center">
+ 
+  <a href="https://github.com/BeLazy167/RegiBot/network/members">
+     <img alt="Forks" src="https://img.shields.io/github/forks/BeLazy167/RegiBot?color=yellow&style=for-the-badge">
+  </a>
+  <a href="https://github.com/BeLazy167/RegiBot/stargazers">
+    <img alt="Stars" src="https://img.shields.io/github/stars/BeLazy167/RegiBot?color=violet&style=for-the-badge">
+  </a>
+  <a href="https://github.com/BeLazy167/RegiBot/blob/final-push/LICENSE">
+     <img src="https://img.shields.io/github/license/BeLazy167/RegiBot?color=orange&style=for-the-badge" alt="discord.py">
+  </a>
+</p>
+
+---
+
 # RegiBot
 ### Description
 >
 >A discord registration bot that can be used to register the participants in a specific tournament or competition reducing the work load for the admin.
+
+---
+
+## Setup your own bot and database
+Read [setup.md](https://github.com/BeLazy167/RegiBot/blob/final-push/setup.md) for more information! 
 
 ---
 
@@ -37,4 +62,27 @@
 - [Pandas](https://pandas.pydata.org/pandas-docs/stable/)
 > **pandas** is an **open source**, **BSD-licensed** library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language. We have used this library for converting **mongo** to **csv**.
 
- ---
+---
+
+## Contributing 
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+1. Fork the Project
+2. Create your Feature Branch ``` git checkout -b feature/AmazingFeature```
+3. Commit your Changes ``` git commit -m 'Add some AmazingFeature'```
+4. Push to the Branch ``` git push origin feature/AmazingFeature```
+5. Open a Pull Request
+
+---
+
+## Contributors
+people who already contributed to TragicSimpBot
+<a href="https://github.com/BeLazy167/RegiBot/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=BeLazy167/RegiBot" />
+</a>
+
+---
+
+## If you liked our work considering giving it a 🌟.
+![](https://media.giphy.com/media/ip6n2oVNZBHiM/giphy.gif)
