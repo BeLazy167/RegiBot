@@ -1,4 +1,3 @@
-
 import random
 from cogs import configbot as config
 import pymongo
