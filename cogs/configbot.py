@@ -4,11 +4,11 @@ import pymongo
 class Oauth():
 
     def __init__(self):
-        self.TOKEN = 'ODI1MjYyMzU2NDU1MjI3NDAy.YF7Xdg.hCdAd8g694JAMqkuPjJpaXi7q1k'
-        self.OWNER_IDS = ['252353540327079936', '669518518777282561','440858271000035328']
+        self.TOKEN = 'YOUR DISCORD BOT PUBLIC KEY HERE'
+        self.OWNER_IDS = ['YOUR USER ID HERE']
         
         #database token
-        self.db_link = "mongodb+srv://BeLazy:BeLazy@cluster0.csr3d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+        self.db_link = "your Mongo database link here"
         self.client = pymongo.MongoClient(self.db_link)
         
 
