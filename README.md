@@ -31,7 +31,10 @@ Features:
   - Optimised for both speed and memory
 
 - [pymongo](https://docs.mongodb.com/drivers/pymongo/)
-  > **PyMongo** is a Python distribution containing tools for working with **MongoDB**, and is the recommended way to work with MongoDB from Python. This documentation attempts to explain everything you need to know to use **PyMongo**.
+> **PyMongo** is a Python distribution containing tools for working with **MongoDB**, and is the recommended way to work with MongoDB from Python. This documentation attempts to explain everything you need to know to use **PyMongo**.
 
 - [Pandas](https://pandas.pydata.org/pandas-docs/stable/)
- > **pandas** is an **open source**, **BSD-licensed** library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language. We have used this library for converting **mongo** to **csv**.
+> **pandas** is an **open source**, **BSD-licensed** library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language. We have used this library for converting **mongo** to **csv**.
+
+ ---
+
