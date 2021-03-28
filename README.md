@@ -82,9 +82,13 @@ Contributions are what make the open source community such an amazing place to b
 <a href="https://github.com/BeLazy167/RegiBot/graphs/contributors">
   <img src="https://github.com/BeLazy167/RegiBot/blob/final-push/assets/606082f9859c8-removebg-preview%20(1).png" align="left"/>
 </a><br>
-
-
 <br>
+<br>
+<br>
+<br>
+
+---
+
 <h2 align="center">If you liked our work considering giving it a 🌟</h2>
 <p align="center">
  <img src="https://media.giphy.com/media/ip6n2oVNZBHiM/giphy.gif"/>
