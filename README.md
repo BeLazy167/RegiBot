@@ -87,6 +87,6 @@ people who already contributed to RegiBot
 ---
 
 <h2 align="center">If you liked our work considering giving it a 🌟</h2>
-<p align="center">
+<p>
  <img src="https://media.giphy.com/media/ip6n2oVNZBHiM/giphy.gif"/>
 </p>
