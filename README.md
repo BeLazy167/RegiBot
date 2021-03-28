@@ -45,8 +45,8 @@ Read [setup.md](https://github.com/BeLazy167/RegiBot/blob/final-push/setup.md) f
 ---
 
 ### Libraries Used
-- [Discord.py](https://discordpy.readthedocs.io/en/latest/api.html#)
->**Discord.py** is a modern, easy to use, **feature-rich**, and async ready API wrapper for Discord.
+- Discord.py
+>**[Discord.py]((https://discordpy.readthedocs.io/en/latest/api.html#))** is a modern, easy to use, **feature-rich**, and async ready API wrapper for Discord.
 > 
 >Features:
   >- **Modern Pythonic API** using async/await syntax
@@ -56,11 +56,11 @@ Read [setup.md](https://github.com/BeLazy167/RegiBot/blob/final-push/setup.md) f
   >- Easy to use with an object oriented design
   >- Optimised for both speed and memory
 
-- [pymongo](https://docs.mongodb.com/drivers/pymongo/)
-> **PyMongo** is a Python distribution containing tools for working with **MongoDB**, and is the recommended way to work with MongoDB from Python. This documentation attempts to explain everything you need to know to use **PyMongo**.
+- pymongo
+> **[PyMongo](https://docs.mongodb.com/drivers/pymongo/)** is a Python distribution containing tools for working with **MongoDB**, and is the recommended way to work with MongoDB from Python. This documentation attempts to explain everything you need to know to use **PyMongo**.
 
-- [Pandas](https://pandas.pydata.org/pandas-docs/stable/)
-> **pandas** is an **open source**, **BSD-licensed** library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language. We have used this library for converting **mongo** to **csv**.
+- Pandas
+> **[pandas](https://pandas.pydata.org/pandas-docs/stable/)** is an **open source**, **BSD-licensed** library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language. We have used this library for converting **mongo** to **csv**.
 
 ---
 
@@ -77,7 +77,7 @@ Contributions are what make the open source community such an amazing place to b
 ---
 
 ## Contributors
-people who already contributed to TragicSimpBot
+people who already contributed to RegiBot
 <a href="https://github.com/BeLazy167/RegiBot/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=BeLazy167/RegiBot" />
 </a>
