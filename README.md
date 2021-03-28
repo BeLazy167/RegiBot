@@ -1,4 +1,6 @@
-<img src="https://github.com/JayP09/TragicSimpBot/blob/main/assets/logo.png" align="center" />
+<p align="center">
+ <img src="./assets/regibot.png" align="center" />
+</p>
 <br/>
 
 ---
@@ -85,4 +87,6 @@ people who already contributed to RegiBot
 ---
 
 ## If you liked our work considering giving it a 🌟.
-![](https://media.giphy.com/media/ip6n2oVNZBHiM/giphy.gif)
+<p align="center">
+ <img src="https://media.giphy.com/media/ip6n2oVNZBHiM/giphy.gif"/>
+</p>
