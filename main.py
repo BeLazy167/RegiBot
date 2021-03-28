@@ -1,13 +1,14 @@
 from cogs import databasemongo as db
 from cogs import configbot as config
 from cogs import eventCog
+from cogs import helpCog
 import discord
 from discord.utils import get
 from discord.ext import commands
 import logging as logger
 
 
-cogs = [eventCog]
+cogs = [eventCog,helpCog]
 
 #import all the config data
 dataConfig = config.Oauth()

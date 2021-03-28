@@ -4,8 +4,12 @@ from discord.utils import get
 from cogs import databasemongo as db
 from cogs import databasetocsv as data
 import logging as logger
+import os
 
 logger.basicConfig(level=logger.INFO)
+
+def delete(fileName):
+  os.remove(fileName)
 
 class eventCreate(commands.Cog):
   def __init__(self,client):
@@ -53,6 +57,7 @@ class eventCreate(commands.Cog):
       if value is not None:
         csvFile = data.mongoToCsv(str(message.guild.id),event)
         await message.channel.send(file=discord.File(csvFile))
+        delete(csvFile)
       else:
         embed = discord.Embed(title="Falied",description=f'**{event}, no such event found.**',color=0xff0000)
         await message.channel.send(embed=embed)
