@@ -83,6 +83,7 @@ people who already contributed to RegiBot
 <a href="https://github.com/BeLazy167/RegiBot/graphs/contributors" align="left">
   <img src="https://github.com/BeLazy167/RegiBot/blob/final-push/assets/606082f9859c8-removebg-preview%20(1).png" align="left"/>
 </a>
+<br>
 
 ---
 
