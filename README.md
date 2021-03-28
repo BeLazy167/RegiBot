@@ -22,6 +22,7 @@
 ### Libraries Used
 - [Discord.py](https://discordpy.readthedocs.io/en/latest/api.html#)
 >**Discord.py** is a modern, easy to use, **feature-rich**, and async ready API wrapper for Discord.
+
 Features:
   >- **Modern Pythonic API** using async/await syntax
   >- Sane rate limit handling that prevents 429s
